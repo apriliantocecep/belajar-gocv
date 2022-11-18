@@ -35,6 +35,17 @@ func main() {
 	// membuat ellips
 	gocv.Ellipse(&canvas, image.Pt(300, 500), image.Pt(100, 50), 45, 130, 270, purple, 4)
 
+	// membuat segitiga
+	pt1 := image.Pt(150, 100)
+	pt2 := image.Pt(100, 200)
+	pt3 := image.Pt(200, 200)
+	kontur_segitiga := [][]image.Point{
+		{pt1, pt2, pt3},
+	}
+	pv := gocv.NewPointsVectorFromPoints(kontur_segitiga)
+	defer pv.Close()
+	gocv.DrawContours(&canvas, pv, 0, green, -1)
+
 	// loop
 	for {
 		// tampilkan canvas di window
